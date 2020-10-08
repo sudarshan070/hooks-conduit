@@ -1,12 +1,16 @@
 import React from 'react';
+import { BrowserRouter, Switch } from 'react-router-dom'
+import 'react-bootstrap'
+import Header from './component/Header'
 
 
 function App() {
   return (
-    <div className="App">
-      <p>Hello </p>
-
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Header />
+      </Switch>
+    </BrowserRouter>
   );
 }
 

@@ -1,0 +1,16 @@
+@media only screen and (max-width: 768px) {
+  .signUp-form {
+    display: block;
+    .form-wrapper {
+      width: 90%;
+      margin: 0 auto;
+      padding-top: 2rem;
+      .form-box {
+        padding: 25px;
+      }
+    }
+  }
+  .card-padding {
+    padding: 1rem;
+  }
+}

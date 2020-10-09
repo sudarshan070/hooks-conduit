@@ -1,14 +1,18 @@
 import React from "react";
-import { NavLink, withRouter } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Formik } from "formik";
 import Axios from "axios";
 
-const Login = (props) => (
+const SignUp = (props) => (
   <div>
     <Formik
-      initialValues={{ email: "", password: "" }}
+      initialValues={{ username: "", email: "", password: "" }}
       validate={(values) => {
         const errors = {};
+
+        if (!values.username) {
+          errors.username = "Required";
+        }
 
         if (!values.email) {
           errors.email = "Required";
@@ -21,7 +25,7 @@ const Login = (props) => (
         const passwordRegex = /(?=.*[0-9])/;
         if (!values.password) {
           errors.password = "Required";
-        } else if (values.password.length < 5) {
+        } else if (values.password.length < 8) {
           errors.password = "Password must be 8 characters long.";
         } else if (!passwordRegex.test(values.password)) {
           errors.password = "Invalid password. Must contain one number.";
@@ -29,16 +33,11 @@ const Login = (props) => (
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
-        Axios.post("https://mighty-oasis-08080.herokuapp.com/api/users/login", {
+        Axios.post("https://mighty-oasis-08080.herokuapp.com/api/users", {
           user: values,
         })
-          .then((res) => {
-            console.log(res.data.user);
-            localStorage.setItem("token", res.data.user.token);
-            props.setIsLoggedIn(true);
-            props.history.push("/");
-          })
-          .catch((error) => props.history.push("/login"));
+          .then((res) => props.history.push("/login"))
+          .catch((error) => console.log(error));
       }}
     >
       {({
@@ -53,8 +52,21 @@ const Login = (props) => (
         <div className="signUp-form">
           <div className="form-wrapper">
             <div className="form-box">
-              <h2>SignIn conduit</h2>
+              <h2>SignUp in conduit</h2>
               <form onSubmit={handleSubmit}>
+                <label htmlFor="username">
+                  Username <span className="text-danger">*</span>
+                </label>
+                <input
+                  className="signUp-form-input login-form-input"
+                  type="text"
+                  name="username"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.username}
+                />
+                {errors.username && touched.username && errors.username}
+
                 <label htmlFor="email">
                   Email <span className="text-danger">*</span>
                 </label>
@@ -89,8 +101,8 @@ const Login = (props) => (
                 </button>
               </form>
               <div className="signUp-link">
-                <NavLink to="/register" style={{ textDecoration: "none" }}>
-                  Can't log in? Sign up for an account
+                <NavLink to="/login" style={{ textDecoration: "none" }}>
+                  Already have an account? Log In
                 </NavLink>
               </div>
             </div>
@@ -101,4 +113,4 @@ const Login = (props) => (
   </div>
 );
 
-export default withRouter(Login);
+export default SignUp;

@@ -15,14 +15,14 @@ export default function Tag() {
   }, []);
 
   return (
-    <div className="d-flex pb-3">
+    <div className="d-flex pb-3 flex-wrap">
       {tag ? (
         tag.tags.map((tag, i) => {
           return (
             <button
               key={i}
               type="button"
-              className="btn btn-outline-secondary ml-1"
+              className="btn btn-outline-secondary ml-1 mb-1"
             >
               {tag}
             </button>

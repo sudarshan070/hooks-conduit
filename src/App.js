@@ -6,6 +6,9 @@ import Login from './component/Login'
 import SignUp from './component/SignUp'
 import HomePage from './component/HomePage'
 import Axios from 'axios';
+import AddArticle from './component/AddArticle';
+import Notification from './component/Notification';
+import SingleArticle from './component/SingleArticle';
 
 
 function App() {
@@ -33,9 +36,13 @@ function App() {
     <BrowserRouter>
       <Header isLoggedIn={isLoggedIn} />
       <Switch>
-        <Route exact path='/' component={HomePage} />
+        <Route exact path='/' render={() => <HomePage isLoggedIn={isLoggedIn} />} />
         <Route path='/login' render={() => <Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path='/register' component={SignUp} />
+        <Route path='/addartilce' component={AddArticle} />
+        <Route path='/singlearticle' component={SingleArticle} />
+        <Route path='/notification' component={Notification} />
+
       </Switch>
     </BrowserRouter>
   );

@@ -1,10 +1,21 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+const checkActive = (match, location) => {
+  if (!location) return false;
+  const { pathname } = location;
+  return pathname === "/";
+};
+
 export default function Header(props) {
   return (
     <div className="d-flex justify-content-between align-items-center p-3 border-bottom bg-light">
-      <NavLink style={{ textDecoration: "none" }} to="/" className="logo">
+      <NavLink
+        style={{ textDecoration: "none" }}
+        to="/"
+        className="logo"
+        isActive={checkActive}
+      >
         <h1>Conduit</h1>
       </NavLink>
 
@@ -15,9 +26,21 @@ export default function Header(props) {
 
 const AuthHeader = (props) => (
   <>
-    <button type="button" className="btn btn-outline-info ml-3">
+    <NavLink
+      isActive={checkActive}
+      to="/"
+      type="button"
+      className="btn btn-outline-primary"
+    >
+      Home
+    </NavLink>
+    <NavLink
+      to="/addartilce"
+      type="button"
+      className="btn btn-outline-info ml-3"
+    >
       Info
-    </button>
+    </NavLink>
     <NavLink
       to="/register"
       type="button"

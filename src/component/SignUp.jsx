@@ -65,7 +65,9 @@ const SignUp = (props) => (
                   onBlur={handleBlur}
                   value={values.username}
                 />
-                {errors.username && touched.username && errors.username}
+                <p className="text-danger">
+                  {errors.username && touched.username && errors.username}
+                </p>
 
                 <label htmlFor="email">
                   Email <span className="text-danger">*</span>
@@ -78,7 +80,9 @@ const SignUp = (props) => (
                   onBlur={handleBlur}
                   value={values.email}
                 />
-                {errors.email && touched.email && errors.email}
+                <p className="text-danger">
+                  {errors.email && touched.email && errors.email}
+                </p>
 
                 <label htmlFor="password">
                   Password <span className="text-danger">*</span>
@@ -91,7 +95,10 @@ const SignUp = (props) => (
                   onBlur={handleBlur}
                   value={values.password}
                 />
-                {errors.password && touched.password && errors.password}
+                <p className="text-danger">
+                  {errors.password && touched.password && errors.password}
+                </p>
+
                 <button
                   className="form-btn login-btn bg-success"
                   type="submit"

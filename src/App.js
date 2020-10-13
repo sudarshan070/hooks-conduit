@@ -12,7 +12,6 @@ import SingleArticle from './component/SingleArticle';
 
 
 function App() {
-
   let [isLoggedIn, setIsLoggedIn] = useState(false)
   let [userInfo, setUserInfo] = useState(null)
 
@@ -29,17 +28,22 @@ function App() {
     } else {
       setIsLoggedIn(false)
     }
-  }, [])
+  }, [isLoggedIn])
 
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false)
+  }
 
   return (
     <BrowserRouter>
-      <Header isLoggedIn={isLoggedIn} />
+      <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
       <Switch>
         <Route exact path='/' render={() => <HomePage isLoggedIn={isLoggedIn} />} />
         <Route path='/login' render={() => <Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path='/register' component={SignUp} />
-        <Route path='/addartilce' component={AddArticle} />
+        <Route path='/addarticle' component={AddArticle} />
         <Route path='/article/:slug' component={SingleArticle} />
         <Route path='/notification' component={Notification} />
 

@@ -14,7 +14,7 @@ export default function SingleArticle(props) {
         setArticle(article);
       })
       .catch((err) => console.log(err));
-  }, []);
+  } );
   return (
     <div>
       {article ? (

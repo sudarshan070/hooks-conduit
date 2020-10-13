@@ -19,7 +19,13 @@ export default function Header(props) {
         <h1>Conduit</h1>
       </NavLink>
 
-      <div>{props.isLoggedIn ? <AuthHeader /> : <NonAuthHeader />}</div>
+      <div>
+        {props.isLoggedIn ? (
+          <AuthHeader handleLogout={props.handleLogout} />
+        ) : (
+          <NonAuthHeader />
+        )}
+      </div>
     </div>
   );
 }
@@ -38,14 +44,19 @@ const AuthHeader = (props) => (
     <NavLink
       to="/addarticle"
       type="button"
-      className="btn btn-outline-info ml-3"
+      className="btn btn-outline-primary ml-3"
     >
-      info
+      New Post
+    </NavLink>
+
+    <NavLink to="/user" type="button" className="btn btn-outline-primary ml-3">
+      Profile
     </NavLink>
 
     <NavLink
-      to="/register"
+      to="/login"
       type="button"
+      onClick={props.handleLogout}
       className="btn btn-outline-danger ml-3"
     >
       Logout

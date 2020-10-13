@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import User from "../media/user.png";
 
 export default function SingleArticle(props) {
   let [article, setArticle] = useState(null);
@@ -14,7 +15,7 @@ export default function SingleArticle(props) {
         setArticle(article);
       })
       .catch((err) => console.log(err));
-  } );
+  }, [props.match.params]);
   return (
     <div>
       {article ? (
@@ -26,11 +27,15 @@ export default function SingleArticle(props) {
                   {article.article.title}
                 </h4>
                 <div className="d-flex align-items-center py-3">
-                  <img
-                    style={{ width: "75px", borderRadius: "50%" }}
-                    src={article.article.author.image}
-                    alt={article.article.author.username}
-                  />
+                  {article.article.author.image ? (
+                    <img
+                      style={{ width: "75px", borderRadius: "50%" }}
+                      src={article.article.author.image}
+                      alt={article.article.author.username}
+                    />
+                  ) : (
+                    <img src={User} alt="user" />
+                  )}
                   <div className="ml-3">
                     <p className="author-name">
                       {article.article.author.username}

@@ -1,8 +1,9 @@
 import React from "react";
 import { Formik } from "formik";
 import { withRouter } from "react-router-dom";
+import Axios from "axios";
 
-const AddArticle = () => (
+const AddArticle = (props) => (
   <div>
     <div className="article-heading">
       <h1>Add Article</h1>
@@ -27,10 +28,16 @@ const AddArticle = () => (
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+        var addArticleUrl = `https://mighty-oasis-08080.herokuapp.com/api/articles`;
+        Axios.post(
+          addArticleUrl,
+          { article: values },
+          { headers: { authorization: `Token ${localStorage.token}` } }
+        )
+          .then((res) => {
+            props.history.push("/");
+          })
+          .catch((err) => console.log(err));
       }}
     >
       {({

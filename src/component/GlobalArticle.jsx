@@ -47,7 +47,7 @@ export default function GlobalArticle() {
                 </p>
                 <div className="d-flex justify-content-end">
                   <NavLink
-                    to="/singlearticle"
+                    to={`/article/${article.slug}`}
                     type="button"
                     className="btn btn-link"
                   >

@@ -40,7 +40,7 @@ function App() {
         <Route path='/login' render={() => <Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path='/register' component={SignUp} />
         <Route path='/addartilce' component={AddArticle} />
-        <Route path='/singlearticle' component={SingleArticle} />
+        <Route path='/article/:slug' component={SingleArticle} />
         <Route path='/notification' component={Notification} />
 
       </Switch>

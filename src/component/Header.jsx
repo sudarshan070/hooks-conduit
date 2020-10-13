@@ -34,13 +34,15 @@ const AuthHeader = (props) => (
     >
       Home
     </NavLink>
+
     <NavLink
-      to="/addartilce"
+      to="/addarticle"
       type="button"
       className="btn btn-outline-info ml-3"
     >
-      Info
+      info
     </NavLink>
+
     <NavLink
       to="/register"
       type="button"

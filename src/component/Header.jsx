@@ -49,7 +49,11 @@ const AuthHeader = (props) => (
       New Post
     </NavLink>
 
-    <NavLink to="/user" type="button" className="btn btn-outline-primary ml-3">
+    <NavLink
+      to="/profile"
+      type="button"
+      className="btn btn-outline-primary ml-3"
+    >
       Profile
     </NavLink>
 

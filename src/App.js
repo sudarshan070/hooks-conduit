@@ -9,6 +9,7 @@ import Axios from 'axios';
 import AddArticle from './component/AddArticle';
 import Notification from './component/Notification';
 import SingleArticle from './component/SingleArticle';
+import Profile from './component/Profile';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
         <Route path='/addarticle' component={AddArticle} />
         <Route path='/article/:slug' component={SingleArticle} />
         <Route path='/notification' component={Notification} />
+        <Route path='/profile' render={() => <Profile userInfo={userInfo} />} />
 
       </Switch>
     </BrowserRouter>
